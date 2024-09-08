@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Safety Dashboard</title>
+
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <style>
+        /* General Page Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #3b5998;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            flex: 1; /* Takes up remaining space to push footer down */
+        }
+        .map-section {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .map-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 8px;
+        }
+        .data-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .chart-container {
+            margin-bottom: 20px;
+        }
+        .chart-container h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        canvas {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .report-container h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .report {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #2d4373;
+        }
+        footer {
+            background-color: #3b5998;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto; /* Pushes footer to the bottom */
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Road Safety Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <!-- Left Side: Map and Hotspot Identification -->
+        <section class="map-section">
+            <h2>Crash Hotspot Map</h2>
+            <div id="map"></div>
+        </section>
+
+        <!-- Right Side: Charts and Reports -->
+        <section class="data-section">
+            <!-- Charts for Accident Trends -->
+            <div class="chart-container">
+                <h2>Accident Trends</h2>
+                <canvas id="accidentChart"></canvas>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="report-container">
+                <h2>Executive Reports</h2>
+                <div class="report">
+                    <p><strong>Location:</strong> Main Street Intersection</p>
+                    <p><strong>Recommendations:</strong> Add traffic lights and reduce speed limit.</p>
+                    <button>Download Report</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Road Safety Analytics</p>
+    </footer>
+
+    <!-- Include Leaflet JS for the Map -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Include Chart.js for the Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Initialize the Leaflet Map
+        var map = L.map('map').setView([-37.8136, 144.9631], 12); // Coordinates for Melbourne
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Example marker for a crash hotspot
+        L.marker([-37.8136, 144.9631]).addTo(map)
+            .bindPopup('Crash Hotspot: Main Street Intersection')
+            .openPopup();
+
+        // Accident Trend Chart Example using Chart.js
+        var ctx = document.getElementById('accidentChart').getContext('2d');
+        var accidentChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Accidents per Month',
+                    data: [15, 22, 8, 12, 18],
+                    borderColor: '#3b5998',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
