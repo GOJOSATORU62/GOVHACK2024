@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Hotspot Details</title>
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* General Page Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #3b5998;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .container {
+            padding: 20px;
+            flex: 1;
+            /* Takes up remaining space to push footer down */
+        }
+        .hotspot-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hotspot-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #3b5998;
+            color: white;
+        }
+        td {
+            background-color: #fff;
+        }
+        footer {
+            background-color: #3b5998;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+            /* Pushes footer to the bottom */
+        }
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Accident Hotspot Details</h1>
+    </header>
+    <div class="container">
+        <!-- Section for displaying accident hotspots in a table -->
+        <section class="hotspot-section">
+            <h2>Hotspot Locations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Number of Accidents</th>
+                        <th>Severity</th>
+                        <th>Recommendations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Main Street Intersection</td>
+                        <td>22</td>
+                        <td>High</td>
+                        <td>Add traffic lights, reduce speed limit</td>
+                    </tr>
+                    <tr>
+                        <td>Elmwood Avenue</td>
+                        <td>15</td>
+                        <td>Medium</td>
+                        <td>Install speed bumps</td>
+                    </tr>
+                    <tr>
+                        <td>Parkside Boulevard</td>
+                        <td>10</td>
+                        <td>Low</td>
+                        <td>Add pedestrian crossings</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Additional information or actions can be added here -->
+            <button>Download Hotspot Data</button>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Road Safety Analytics</p>
+    </footer>
+    <!-- Include Leaflet JS for the Map -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</body>
+</html>
